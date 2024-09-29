@@ -1,0 +1,15 @@
+extends layout
+
+block content
+    h1 #{title}
+
+    p #[strong Title: #{bookinstance.book.title}]
+    p #[strong imprint:]     #{bookinstance.imprint}
+    p #[strong Status:]   #{bookinstance.status};
+    p #[strong due_date:] #{bookinstance.due_back_client_format}
+  
+    p Do you really want to delete this Book instance?
+    form(method='POST')
+        div.form-group 
+            input#authorid.form-control(type='hidden' name='bookinstanceid' value=bookinstance._id)
+        button.btn.btn-danger(type='submit') Delete

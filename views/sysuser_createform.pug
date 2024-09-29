@@ -1,0 +1,39 @@
+extends Layout 
+
+block content
+
+    h1 #{title}
+    p Please fill in the following form to create a new system user.
+
+    form(method='POST')
+        div.form-group 
+            label(for='first_name') First Name:
+            input#first_name.form-control(type='text', placeholder='First name(Christian)', autocomplete='off',
+            name='first_name' required value=(undefined===sysuser ? '' :sysuser.first_name)
+            )
+            label(for='last_name') Family Name:
+            input#last_name.form-control(type='text', placeholder='Last name(Surname)',autocomplete='off',
+            name='last_name' required value=(undefined===sysuser ? '': sysuser.last_name),
+            )
+        div.form-group
+            label(for='username') Username:
+            input#username.form-control(type='text', placeholder='UserID', name='username', autocomplete='off', required value=(undefined===sysuser ? '' : sysuser.username))
+
+        div.form-group            
+            label(for='password') Password: 
+            input#password.form-control(type='password', placeholder='Password' name='password' autocomplete='off', required)
+
+        div.form-group
+            label(for='passconfirm') Confirm Password: 
+            input#passconfirm.form-control(type='password', placeholder='Confirm Password' name='passconfirm' autocomplete='off', required)
+
+        div.form-group    
+            label(for='date_of_birth') Date for Birth: 
+            input#date_of_birth.form-control(type='date', placeholder='mm/dd/yyyy'  name='date_of_birth' autocomplete='off', value=(undefined===sysuser ? '': sysuser.birthday_client_format))
+
+        button.btn.btn-primary(type='submit') Submit 
+
+        if errors
+            ul 
+                for error in errors 
+                    li!= error.msg

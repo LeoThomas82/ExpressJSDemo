@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  if author_list.length > 0
+    ul 
+      each author in author_list 
+        li 
+          a(href=author.url) #{author.name}
+          |#{author.liftspan}
+  else 
+    p There are no authors.
